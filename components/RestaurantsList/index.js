@@ -1,47 +1,35 @@
 import React from 'react'
-import { Container, Row, Col }  from 'react-bootstrap'
+import { Row, Col, Spinner, Alert }  from 'react-bootstrap'
+import { FaExclamationTriangle } from 'react-icons/fa'
 import Restaurant from '../RestaurantsList/Restaurant'
+import getRestaurants from '../../services/getRestaurants'
 
 export default function RestaurantsList() {
-  const restaurants = [
-    {
-       'id': 1,
-       'name': 'example 1',
-       'description': 'Javascript Ipsum, Javascript Ipsum e Javascript Ipsum',
-       'delivery_tax': '5',
-       'image_url': '/restaurant.jpeg',
-       'category_title': 'Cozinha japonesa'
-    },
-    {
-       'id': 2,
-       'name': 'example 2',
-       'delivery_tax': '10',
-       'description': 'Javascript Ipsum, Javascript Ipsum e Javascript Ipsum',
-       'image_url': '/restaurant.jpeg',
-       'category_title': 'Cozinha mineira'
-    },
-    {
-       'id': 3,
-       'name': 'example 3',
-       'delivery_tax': '15',
-       'description': 'Javascript Ipsum, Javascript Ipsum e Javascript Ipsum',
-       'image_url': '/restaurant.jpeg',
-       'category_title': 'Cozinha vegana'
-    },
-    {
-       'id': 4,
-       'name': 'example 4',
-       'delivery_tax': '10',
-       'description': 'Javascript Ipsum, Javascript Ipsum e Javascript Ipsum Javascript Ipsum, Javascript Ipsum e Javascript Ipsum',
-       'image_url': '/restaurant.jpeg',
-       'category_title': 'Cozinha vegana'
+  const { restaurants, isLoading, isError } = getRestaurants()
+
+  function renderContent() {
+    if(isError) {
+      return(
+        <Col>
+          <Alert variant="custom-red">
+            <FaExclamationTriangle className="me-2 mb-1"/> Erro ao carregar esta página.
+          </Alert>
+        </Col>
+      )
+    } else if(isLoading) {
+      return <Col><Spinner animation="border" /></Col>
+    } else if(!restaurants.length) {
+      return <Col>Nenhum restaurante disponível.</Col>
+    } else {
+      return restaurants.map((restaurant, i) => <Restaurant {...restaurant} key={i}/>)
     }
-  ]
+  }
+
   return(
     <div className="mt-5">
       <h3 className="fw-bold mb-4">Restaurantes</h3>
       <Row>
-        {restaurants.map((restaurant, i) => <Restaurant {...restaurant} key={i}/>)}
+        {renderContent()}
       </Row>
     </div>
   )
