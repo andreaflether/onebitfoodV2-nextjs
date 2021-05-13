@@ -12,7 +12,7 @@ export default function RestaurantsList() {
       return(
         <Col>
           <Alert variant="custom-red">
-            <FaExclamationTriangle className="me-2 mb-1"/> Erro ao carregar esta página.
+            <FaExclamationTriangle className="me-2 mb-1"/> Erro ao carregar este recurso.
           </Alert>
         </Col>
       )

@@ -11,7 +11,7 @@ export default function Category(props) {
             alt={props.title}
             width={300}
             height={200}
-            className="px1 clickable-effect"
+            className="px-1 clickable-effect"
           />
         </a>
       </Link>
