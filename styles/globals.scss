@@ -3,7 +3,7 @@
 $theme-colors: (
   'custom-red': $custom-red,
   'custom-gray': $custom-gray,
-  'custom-darker': $custom-gray-darker, 
+  'custom-gray-darker': $custom-gray-darker, 
   'custom-black': $custom-black, 
   'custom-orange': $custom-orange
 );
@@ -40,4 +40,13 @@ body {
   .container {
     width: 95% !important;
   }
+}
+
+.clickable-effect:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+button span.fw-bolder {
+  font-weight: 500 !important;
 }
