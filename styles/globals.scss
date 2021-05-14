@@ -54,3 +54,10 @@ button span.fw-bolder {
 .dashed {
   border-style: dashed !important;
 }
+
+.form-control {
+  box-shadow: none !important;
+  &:focus {
+    border-color: $custom-red;
+  }
+}

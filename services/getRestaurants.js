@@ -3,10 +3,11 @@ import { useRouter } from 'next/router'
 
 export default function getRestaurants() {
   const router = useRouter()
-  const { category } = router.query
+  const { category, q } = router.query
 
   let params = ''
   if(category) params = `${params == '' ? '?' : '&'}category=${category}`
+  if(q) params = `${params == '' ? '?' : '&'}q=${category}`
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
   const { data, error } = useSWR(
