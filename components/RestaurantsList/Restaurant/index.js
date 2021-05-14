@@ -33,7 +33,7 @@ const Restaurant = (props) => (
             </small>
           </Col>
           <Col md={2} xs={2} className="text-center">
-            <span className="text-custom-orange">
+            <span className="text-custom-yellow">
               <FaStar /> 5
             </span>
           </Col>
