@@ -1,17 +1,17 @@
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, CardColumns } from 'react-bootstrap';
 import Image from 'next/image'
 import toBrlCurrency from '../../../services/toBrlCurrency';
 import truncateString from '../../../services/truncateString';
 
 export default function CategoryProducts(props) {
-  console.log(props)
   return(
     <>
       <h5 className="fw-bold">{props.title}</h5>
+      <CardColumns>
       <Row>
         {props.products.map((product, i) =>
           <Col md={4} sm={12} key={i}>
-            <Card className="mb-4 clickable-effect">
+            <Card className="clickable-effect">
               <Row className="my-3 mx-1">
                 <Col md={6} xs={{span: 12, order: 2 }}>
                   <p className="fw-bold mb-0">{product.name}</p>
@@ -35,6 +35,7 @@ export default function CategoryProducts(props) {
           </Col>
         )}
       </Row>
+     </CardColumns>
     </>
   )
 }
