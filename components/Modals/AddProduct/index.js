@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Modal, Row, Col, Form, Button } from 'react-bootstrap'
-import toBrlCurrency from '../../../services/toBrlCurrency'
-import truncateString from '../../../services/truncateString'
+import toBrlCurrency from '../../../helpers/toBrlCurrency'
+import truncateString from '../../../helpers/truncateString'
 
 import { useRecoilState } from 'recoil'
 
@@ -15,15 +15,31 @@ export default function AddProductModal(props) {
   const addProduct = (e) => {
     e.preventDefault()
 
-    const product = {...props.product, ...{'quantity': quantity}}
+    const product = {...props.product, ...{'quantity': parseInt(quantity)}}
 
     if(cart.restaurant.id != props.restaurant.id) {
       setCart({restaurant: props.restaurant, products: [product]})
     } else {
-      setCart({restaurant: props.restaurant, products: [...cart.products, product]})
+      findOrUpdateProduct(product)
     }
     setQuantity(1)
     props.onHide()
+  }
+
+  const findOrUpdateProduct = (product) => {
+    const productSearch = cart.products.find(p => p.id == props.product.id)
+    if(productSearch) {
+      const updatedProducts = cart.products.map(
+        p => (p.id === props.product.id 
+        ? 
+          { ...p, 'quantity': parseInt(p.quantity) + parseInt(quantity) } 
+        : 
+          p)
+      )
+      setCart({restaurant: props.restaurant, products: updatedProducts})
+    } else {
+      setCart({restaurant: props.restaurant, products: [...cart.products, product]})
+    }
   }
   
   if(!props.product) return null
