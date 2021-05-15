@@ -1,7 +1,7 @@
 import { Row, Col, Card } from 'react-bootstrap'
 import Image from 'next/image'
 import { FaStar } from 'react-icons/fa'
-import toBrlCurrency from '../../../services/toBrlCurrency'
+import toBrlCurrency from '../../../helpers/toBrlCurrency'
 
 export default function Details(props) {
   return(

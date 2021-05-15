@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Row, Col, Card, CardColumns } from 'react-bootstrap';
 import Image from 'next/image'
-import toBrlCurrency from '../../../services/toBrlCurrency';
-import truncateString from '../../../services/truncateString';
+import toBrlCurrency from '../../../helpers/toBrlCurrency';
+import truncateString from '../../../helpers/truncateString';
 import AddProductModal from '../../Modals/AddProduct'
 
 export default function CategoryProducts(props) {
