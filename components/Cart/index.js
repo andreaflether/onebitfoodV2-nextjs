@@ -25,7 +25,7 @@ export default function Cart(props) {
       <h5 className="fw-bolder">{cart.restaurant.name}</h5>
       <hr />
       {cart.products.map((product, i) =>
-        <div key={product.id} className="mb-2" key={i}>
+        <div key={product.id} className="mb-1" key={i}>
           <Row>
             <Col md={8} xs={8}>
               <small className="fw-bolder">{product.quantity}x {product.name}</small>
@@ -54,7 +54,7 @@ export default function Cart(props) {
         </div>
       )}
       <hr />
-      <Row className="mt-4">
+      <Row className="mt-1">
         <Col md={8} xs={8}>
           <p>Subtotal</p>
         </Col>

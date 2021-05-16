@@ -24,9 +24,9 @@ export default function CartModal(props) {
       </Modal.Body>
       <Modal.Footer className="justify-content-center">
         {cart.products.length > 0 &&
-          <Link href="orders/new">
+          <Link href="/orders/new">
             <a>
-              <Button variant="custom-red" className="text-white">
+              <Button variant="custom-red" className="text-white" onClick={() => props.onHide()}>
                 Finalizar pedido
               </Button>
             </a>
