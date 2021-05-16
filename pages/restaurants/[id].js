@@ -4,7 +4,7 @@ export default function Restaurant({restaurant}) {
   return <RestaurantDetails restaurant={restaurant} />
 }
 
-/*
+/* SSR
 export async function getServerSideProps(context) {
   const { id } = context.query
 
@@ -19,6 +19,7 @@ export async function getServerSideProps(context) {
 }
 */
 
+// SSG
 export async function getStaticPaths() {
   const res = await fetch(`${process.env.apiUrl}/api/restaurants`)
   const restaurants = await res.json()

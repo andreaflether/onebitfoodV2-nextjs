@@ -9,9 +9,14 @@ export default function getRestaurants() {
   const [address] = useRecoilState(addressState)
 
   let params = ''
-  if(category) params = `${params == '' ? '?' : '&'}category=${category}`
-  if(q) params = `${params == '' ? '?' : '&'}q=${category}`
-  if(address.city != '') params = `${params == '' ? '?' : '&'}city=${address.city}`
+  
+  const appendParams = (name, query) => {
+    params += `${params == '' ? '?' : '&'}${name}=${query}`
+  }
+
+  if(category) appendParams('category', category)
+  if(q) appendParams('q', q)
+  if(address.city != '') appendParams('city', address.city)
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
   const { data, error } = useSWR(
